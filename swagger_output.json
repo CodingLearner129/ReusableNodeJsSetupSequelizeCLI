@@ -1,0 +1,327 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": "Description of your API"
+  },
+  "host": "127.0.0.1:3001",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "x-access-token",
+      "in": "header",
+      "description": "Bearer token obtained from the sign-in endpoint"
+    }
+  },
+  "paths": {
+    "/v1/signup": {
+      "post": {
+        "description": "Endpoint to sign up a new user",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "first_name",
+            "in": "formData",
+            "type": "string",
+            "example": "example",
+            "description": "First name of the user"
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "type": "string",
+            "example": "example",
+            "description": "Last name of the user"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "type": "string",
+            "example": "example@example.com",
+            "description": "Email of the user"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "type": "string",
+            "example": "Example@123",
+            "description": "Password of the user"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file",
+            "description": "Image file to upload"
+          },
+          {
+            "name": "joi",
+            "in": "formData",
+            "type": "integer",
+            "description": "0 => node-input-validator, 1 => joi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/v1/login": {
+      "post": {
+        "description": "Endpoint to sign in an existing user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "joi": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 0
+                },
+                "email": {
+                  "type": "string",
+                  "example": "example@example.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Example@123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/v1/refresh": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "Used to generate access token",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/v1/forgot-password": {
+      "post": {
+        "description": "Used to create request of forgot password",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "joi": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 0
+                },
+                "email": {
+                  "type": "string",
+                  "example": "example@example.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/v1/reset-password": {
+      "post": {
+        "description": "Used to reset password",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "joi": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 0
+                },
+                "token": {
+                  "type": "string",
+                  "example": "example&example&example&example&example&example"
+                },
+                "new_password": {
+                  "type": "string",
+                  "example": "Example@123"
+                },
+                "confirm_password": {
+                  "type": "string",
+                  "example": "Example@123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/v1/user": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "Used to get user profile",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/v1/user/change-password": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "Used to get user profile",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "joi": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 0
+                },
+                "current_password": {
+                  "type": "string",
+                  "example": "Example@123"
+                },
+                "new_password": {
+                  "type": "string",
+                  "example": "Example@123"
+                },
+                "confirm_password": {
+                  "type": "string",
+                  "example": "Example@123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/v1/user/all": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "Used to get all users",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "joi": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 0
+                },
+                "page": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": "1"
+                },
+                "size": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": "10"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/v1/logout": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "Used to logout",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
