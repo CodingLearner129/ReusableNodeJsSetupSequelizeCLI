@@ -62,7 +62,7 @@ Follow these steps to get the project up and running:
     DB_LOGGING=false
     TIMEZONE="+05:30"
     ```
-5.  Configure your database in the .env file:
+5.  Configure your jwt encription in the .env file:
 
     ```bash
     JWT_ENCRYPTION=your_secret_string
