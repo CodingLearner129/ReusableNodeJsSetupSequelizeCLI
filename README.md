@@ -91,3 +91,9 @@ Follow these steps to get the project up and running:
     ```bash
     npm run dev
     ```
+
+10. To check APIs using Swagger UI:
+    
+    ```bash
+    http://127.0.0.1:3000/api-docs/
+    ```
