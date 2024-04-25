@@ -19,7 +19,7 @@ export const getProfile = async (req, res) => {
             });
         }
     } catch (error) {
-        logMessage(req, error);
+        logMessage(error, req);
         res.status(500).send({
             status: false,
             message: await getMessage('common.something_went_wrong'),
@@ -49,7 +49,7 @@ export const getAllUsers = async (req, res) => {
             });
         }
     } catch (error) {
-        logMessage(req, error);
+        logMessage(error, req);
         res.status(500).send({
             status: false,
             message: await getMessage('common.something_went_wrong'),
