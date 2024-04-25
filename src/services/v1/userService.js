@@ -68,7 +68,7 @@ export const changePassword = async (req, res, model) => {
             });
         }
     } catch (error) {
-        logMessage(req, error);
+        logMessage(error, req);
         await transaction.rollback();
         res.status(500).send({
             status: false,
