@@ -34,6 +34,6 @@ const logger = winston.createLogger({
     ],
 });
 
-export const logMessage = (error, req = {},level = "error") => {
+export const logMessage = (error, req = {}, level = "error") => {
     logger.log(level, error.message, { stack: error.stack, req: req??{} });
 };
