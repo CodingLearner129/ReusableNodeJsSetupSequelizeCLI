@@ -35,7 +35,7 @@ export const authenticationMiddleware = async (req, res, next, model) => {
             }
         }
     } catch (error) {
-        logMessage(req, error);
+        logMessage(error, req);
         return res.status(401).send({
             status: false,
             message: await getMessage('auth.session_expired'),
