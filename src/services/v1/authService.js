@@ -79,7 +79,7 @@ export const logIn = async (req, res, model) => {
             });
         }
     } catch (error) {
-        logMessage(req, error);
+        logMessage(error, req);
         res.status(500).send({
             status: false,
             message: await getMessage('common.something_went_wrong'),
@@ -134,7 +134,7 @@ export const refreshToken = async (req, res) => {
             }
         }
     } catch (error) {
-        logMessage(req, error);
+        logMessage(error, req);
         await redis.del(token);
         res.status(500).send({
             status: false,
@@ -217,7 +217,7 @@ export const forgotPassword = async (req, res, model) => {
             });
         }
     } catch (error) {
-        logMessage(req, error);
+        logMessage(error, req);
         await transaction.rollback();
         res.status(500).send({
             status: false,
@@ -268,7 +268,7 @@ export const resetPassword = async (req, res, model) => {
             });
         }
     } catch (error) {
-        logMessage(req, error);
+        logMessage(error, req);
         await transaction.rollback();
         res.status(500).send({
             status: false,
