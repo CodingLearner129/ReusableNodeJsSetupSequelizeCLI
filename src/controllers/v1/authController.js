@@ -13,7 +13,7 @@ export const signUp = async (req, res) => {
             message: await getMessage('auth.signup_success'),
         });
     } catch (error) {
-        logMessage(req, error);
+        logMessage(error, req);
         res.status(500).send({
             status: false,
             message: await getMessage('common.something_went_wrong'),
@@ -42,7 +42,7 @@ export const logOut = async (req, res) => {
         const token = req.headers['x-access-token'];
         if (!token) {
             return res.status(401).json({
-                success: false,
+                status: false,
                 message: await getMessage('auth.no_token_provided'),
             });
         }
@@ -52,7 +52,7 @@ export const logOut = async (req, res) => {
             message: await getMessage('auth.logout_success'),
         });
     } catch (error) {
-        logMessage(req, error);
+        logMessage(error, req);
         res.status(500).send({
             status: false,
             message: await getMessage('common.something_went_wrong'),
