@@ -46,7 +46,7 @@ export const logOut = async (req, res) => {
                 message: await getMessage('auth.no_token_provided'),
             });
         }
-        await authService.logOut(req, res);
+        await authService.logOut(token);
         res.status(200).send({
             status: true,
             message: await getMessage('auth.logout_success'),
