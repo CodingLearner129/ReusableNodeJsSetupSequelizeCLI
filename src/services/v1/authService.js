@@ -144,7 +144,7 @@ export const refreshToken = async (req, res) => {
     }
 }
 
-export const logOut = async (req, res) => {
+export const logOut = async (token) => {
     try {
         await redis.set(`blackListed-${token}`, token, 60 * 60 * 24 * 7);
         await redis.del(token);
