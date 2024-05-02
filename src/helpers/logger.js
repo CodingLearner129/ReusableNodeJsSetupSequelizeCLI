@@ -2,16 +2,18 @@ import winston from "winston";
 import moment from "moment";
 import 'winston-daily-rotate-file';
 
+let currentLogLevel = "error";
+
 const fileRotateTransport = new winston.transports.DailyRotateFile({
-    level: "error",
-    filename: 'log-%DATE%.log',
+    level: currentLogLevel,
+    filename: 'logs/log-%DATE%.log',
     datePattern: 'YYYY-MM-DD',
     maxFiles: null, // or set a large value to avoid rotation based on file count
     // maxFiles: '1d',
 });
 
 const logger = winston.createLogger({
-    level: 'error',
+    level: currentLogLevel,
     format: winston.format.combine(
         winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
         winston.format.printf(({ timestamp, level, message, stack, req }) => {
@@ -35,5 +37,8 @@ const logger = winston.createLogger({
 });
 
 export const logMessage = (error, req = {}, level = "error") => {
-    logger.log(level, error.message, { stack: error.stack, req: req??{} });
+    currentLogLevel = level;
+    fileRotateTransport.level = level;
+    logger.level = level;
+    logger.log(level, error?.message ?? error, { stack: error?.stack ?? '', req: req ?? {} });
 };
