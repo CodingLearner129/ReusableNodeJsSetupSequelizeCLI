@@ -1,12 +1,13 @@
-
-[2024-05-02 16:05:26] ERROR: Model.findOne is not a function
-[2024-05-02 16:05:26] ERROR: TypeError: Model.findOne is not a function
-    at Module.getOne (file:///C:/xampp/htdocs/btnd_node_server/src/v1/services/model_service.js:14:28)
-    at Module.verifyFirebaseToken (file:///C:/xampp/htdocs/btnd_node_server/src/v1/services/auth_service.js:28:45)
-    at async verifyFirebaseToken (file:///C:/xampp/htdocs/btnd_node_server/src/v1/controllers/auth_controller.js:6:5)
-
-[2024-05-02 16:05:26] ERROR: Model.findOne is not a function
-[2024-05-02 16:05:26] ERROR: TypeError: Model.findOne is not a function
-    at Module.getOne (file:///C:/xampp/htdocs/btnd_node_server/src/v1/services/model_service.js:14:28)
-    at Module.verifyFirebaseToken (file:///C:/xampp/htdocs/btnd_node_server/src/v1/services/auth_service.js:28:45)
-    at async verifyFirebaseToken (file:///C:/xampp/htdocs/btnd_node_server/src/v1/controllers/auth_controller.js:6:5)
+[2024-03-29 15:18:35] API URL: http://127.0.0.1:3001/v1/user/all
+[2024-03-29 15:18:35] API PARAMETER:  {"page":0,"size":10,"joi":0}
+[2024-03-29 15:18:35] ERROR: jwt expired
+[2024-03-29 15:18:35] ERROR: TokenExpiredError: jwt expired
+    at C:\xampp\htdocs\sequelizesetup\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\xampp\htdocs\sequelizesetup\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports (C:\xampp\htdocs\sequelizesetup\node_modules\jsonwebtoken\verify.js:101:10)
+    at node:internal/util:442:7
+    at new Promise (<anonymous>)
+    at node:internal/util:428:12
+    at verifyToken (file:///C:/xampp/htdocs/sequelizesetup/src/services/v1/authService.js:23:43)
+    at authenticationMiddleware (file:///C:/xampp/htdocs/sequelizesetup/src/middlewares/v1/authMiddleware.js:23:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
